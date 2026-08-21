@@ -2505,7 +2505,17 @@ $("pwEye").innerHTML=EYE_ON;
 @media (max-width:760px){
   .main{padding:18px 12px 48px}
   .greeting{font-size:19px}
-  .grid{grid-template-columns:1fr}
+  /* Dos columnas en celular: con 20 apps, una sola columna obliga
+     a desplazar demasiado para encontrar algo. */
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .app-card{padding:14px;border-radius:13px}
+  .app-icon{width:38px;height:38px;border-radius:11px;margin-bottom:10px}
+  .app-icon svg{width:19px;height:19px}
+  .app-title{font-size:14px;line-height:1.25;margin-bottom:4px}
+  .app-desc{font-size:11.5px;line-height:1.4;margin-bottom:12px;
+            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .app-open{font-size:12px;padding:8px 12px;width:100%;justify-content:center}
+  .app-badge-new{top:10px;right:10px;font-size:9px;padding:2px 7px}
   .topbar-inner{flex-wrap:wrap;gap:8px;padding:10px 12px}
   .top-actions{width:100%;gap:6px}
   .top-actions .ghost{flex:1;text-align:center;padding:10px 8px;font-size:12.5px}
@@ -2532,6 +2542,11 @@ $("pwEye").innerHTML=EYE_ON;
   table.t-cards td.t-acts:before{display:none}
   table.t-cards td.t-acts>*{flex:1 1 auto;min-width:calc(50% - 7px)}
   table.t-cards td.t-hide{display:none!important}
+}
+/* Por debajo de 380px una columna: en dos, el texto queda ilegible. */
+@media (max-width:379px){
+  .grid{grid-template-columns:1fr}
+  .app-desc{-webkit-line-clamp:2}
 }
 .lote-item{border-top:1px solid var(--line,#e4e9f0);padding:9px 2px;display:flex;gap:10px;align-items:flex-start}
 .lote-item:first-child{border-top:0}
