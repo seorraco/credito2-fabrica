@@ -2561,12 +2561,37 @@ $("pwEye").innerHTML=EYE_ON;
   table.t-cards tbody,table.t-cards tr,table.t-cards td{display:block;width:auto}
   table.t-cards tr{background:#fff;border:1px solid rgba(0,0,0,.10);border-radius:10px;margin:0 0 10px;padding:11px 13px}
   table.t-cards td{border:0!important;padding:5px 0!important;display:flex;gap:12px;align-items:baseline;justify-content:space-between;text-align:right}
-  table.t-cards td:before{content:attr(data-label);flex:0 0 42%;text-align:left;color:#6b7785;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  table.t-cards td:before{content:attr(data-label);flex:0 0 38%;text-align:left;color:#6b7785;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  /* Si la celda tiene un campo editable, la etiqueta va ENCIMA:
+     así el campo usa todo el ancho y el texto no se corta. */
+  table.t-cards td:has(input:not([type=checkbox])),
+  table.t-cards td:has(select),
+  table.t-cards td:has(textarea){
+    display:block;text-align:left;padding:7px 0 !important;
+  }
+  table.t-cards td:has(input:not([type=checkbox])):before,
+  table.t-cards td:has(select):before,
+  table.t-cards td:has(textarea):before{
+    display:block;flex:none;width:auto;margin-bottom:5px;
+  }
+  table.t-cards td input:not([type=checkbox]),
+  table.t-cards td select,
+  table.t-cards td textarea{ width:100%; }
+  /* La celda del interruptor sí queda en línea */
+  table.t-cards td:has(.switch){ display:flex;align-items:center;justify-content:space-between }
+  table.t-cards td:has(.switch):before{ display:block;flex:0 0 auto }
+  /* Restablecer clave: campo y botón sin apretarse */
+  table.t-cards .pwcell{ gap:8px }
+  table.t-cards .pwcell input{ min-width:0 }
+  table.t-cards .pwsave{ min-width:44px;min-height:44px }
   table.t-cards td.t-first{display:block;text-align:left;font-weight:700;font-size:14.5px;border-bottom:1px solid rgba(0,0,0,.08)!important;margin-bottom:7px;padding-bottom:9px!important}
   table.t-cards td.t-first:before{display:none}
   table.t-cards td.t-acts{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-start;padding-top:10px!important;border-top:1px solid rgba(0,0,0,.08)!important}
   table.t-cards td.t-acts:before{display:none}
-  table.t-cards td.t-acts>*{flex:1 1 auto;min-width:calc(50% - 7px)}
+  table.t-cards td.t-acts>*{flex:1 1 auto;min-width:calc(50% - 7px);min-height:42px}
+  /* Aire al final: el botón flotante de chat tapaba la última acción */
+  .panel{padding-bottom:26px}
+  .main{padding-bottom:96px}
   table.t-cards td.t-hide{display:none!important}
 }
 /* Por debajo de 380px una columna: en dos, el texto queda ilegible. */
